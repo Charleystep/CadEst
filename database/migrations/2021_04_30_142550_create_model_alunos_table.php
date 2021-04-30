@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateModelAlunosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('aluno', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_user')->unsigned();
+            $table->foregin('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
-            $table->string('cpf');
-            $table->
             $table->timestamps();
+
         });
     }
 
@@ -29,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('aluno');
     }
 }
